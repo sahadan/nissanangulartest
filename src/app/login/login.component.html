@@ -1,0 +1,53 @@
+<div class="container">
+    
+        <h3>Login here...</h3>
+        <hr>
+        <form [formGroup]="loginForm" (ngSubmit)="loginCredentials()">
+           <!--User Name Control-->
+            <div class ="form-group">
+               <p>
+                <label for="uName" class="form-label">User Name: </label>
+                   <input type="text" placeholder="Enter User Name..." name="uName"
+                   formControlName="uName" class="form-control" minlength="5" required
+                   [ngClass]="{'is-invalid': formControls.uName.touched && formControls.uName.invalid}"
+                   autocomplete="off">
+               </p>
+           </div>
+           <!--UserName Validation-->
+           <div *ngIf="isSubmitted && formControls.uName.errors">
+                <div *ngIf="formControls.uName.errors"
+                style="color: red; text-align: left;">
+                    User Name is required!
+                </div>
+           </div>
+
+            <!--Password Control-->
+            <div class ="form-group">
+                <p>
+                 <label for="uPassword" class="form-label">Password: </label>
+                    <input type="password" placeholder="Enter password..."  name="uPassword"
+                   formControlName="uPassword" minlength="5" required
+                   [ngClass]="{'is-invalid': formControls.uPassword.touched && formControls.uPassword.invalid}"
+                    formControlName="uPassword" class="form-control">
+                </p>
+            </div>
+ 
+            <!--UserName Validation-->
+            <div *ngIf="isSubmitted && formControls.uPassword.errors">
+                 <div *ngIf="formControls.uPassword.errors"
+                 style="color: red; text-align: left;">
+                     Password is required!
+                 </div>
+            </div>
+
+            <!--Button-->
+            <div >
+                <button class=" form-control btn btn-primary">Login</button>
+            </div>
+            <div *ngIf="error" style="color: red; text-align: left;">
+                {{error}}
+            </div>
+
+        </form>
+ 
+</div>

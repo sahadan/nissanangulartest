@@ -1,0 +1,95 @@
+<!-- Template-Driven Form-->
+
+<form name="empform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+
+    <!--Employee ID --- Hidden-->
+    <input type="hidden" name="EmployeeId" [(ngModel)]="empService.formData.EmployeeId">
+
+    <!--Employee Name-->
+    <div class="form-group">
+        <label>Full Name : </label>
+        <input type="text" name="EmployeeName" #EmployeeName="ngModel" [(ngModel)]="empService.formData.EmployeeName"
+            class="form-control" placeholder="Enter full name" required minlength="6" maxlength="25"
+            [ngClass]="{'is-invalid': EmployeeName.touched && EmployeeName.invalid}" />
+        <!--Validation-->
+        <div class="validation-error" *ngIf="EmployeeName.touched && EmployeeName.invalid">
+            <div *ngIf="EmployeeName.errors.required">
+                First Name is required!
+            </div>
+        </div>
+    </div>
+
+    <!--Designation-->
+    <div class="form-group">
+        <label>Designation : </label>
+        <input type="text" name="Designation" #Designation="ngModel" [(ngModel)]="empService.formData.Designation"
+            class="form-control" placeholder="Enter designation" required minlength="2" maxlength="20"
+            [ngClass]="{'is-invalid': Designation.touched && Designation.invalid}" />
+        <!--Validation-->
+        <div class="validation-error" *ngIf="Designation.touched && Designation.invalid">
+            <div *ngIf="Designation.errors.required">
+                Designation is required!
+            </div>
+        </div>
+    </div>
+
+    <!--Date Of Joining-->
+    <div class="form-group">
+        <label>Date Of Joining : </label>
+        <input type="date" name="DateOfJoining" #DateOfJoining="ngModel" [(ngModel)]="empService.formData.DateOfJoining"
+            class="form-control" required [ngClass]="{'is-invalid': DateOfJoining.touched && DateOfJoining.invalid}" />
+        <!--Validation-->
+        <div class="validation-error" *ngIf="DateOfJoining.touched && DateOfJoining.invalid">
+            <div *ngIf="DateOfJoining.errors.required">
+                DateOfJoining is required!
+            </div>
+        </div>
+    </div>
+
+    <!--Contact-->
+    <div class="form-group">
+        <label>Contact : </label>
+        <input type="text" name="Contact" #Contact="ngModel" [(ngModel)]="empService.formData.Contact"
+            class="form-control" placeholder="Enter contact" required minlength="10"
+            [ngClass]="{'is-invalid': Contact.touched && Contact.invalid}" />
+        <!--Validation-->
+        <div class="validation-error" *ngIf="Contact.touched && Contact.invalid">
+            <div *ngIf="Contact.errors.required">
+                Contact is required!
+            </div>
+        </div>
+    </div>
+
+    <!--Department dropdown-->
+    <div class="form-group">
+        <label>Department : </label>
+        <select name="DepartmentId" id="DepartmentId" class="form-control" #DepartmentId="ngModel" reqired
+            [(ngModel)]="empService.formData.DepartmentId">
+            <option value=0 disabled>Select Department</option>
+            <option *ngFor="let dept of empService.departments" value="{{dept.DepartmentId}}">
+                {{dept.DepartmentName}}</option>
+        </select>
+        <!--Validation-->
+        <div class="validation-error" *ngIf="DepartmentId.touched && DepartmentId.invalid">
+            <div *ngIf="DepartmentId.errors.required">
+                Department is required!
+            </div>
+        </div>
+    </div>
+
+    <!--IsActive-->
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">In Service</label>
+            <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel"
+                [(ngModel)]="empService.formData.IsActive" class="form-check-input">
+        </div>
+    </div>
+    <!--Submit-->
+    <br>
+    <div class="form-group">
+        <button type="submit" class=" btn btn-lg btn-primary form-control"
+            [disabled]="!(form.valid && form.dirty)">Submit</button>
+    </div>
+</form>
+

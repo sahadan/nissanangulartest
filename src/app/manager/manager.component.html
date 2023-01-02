@@ -1,0 +1,23 @@
+<header>
+    <div class="container">
+        <h5> Welcome : {{loggedUser}}</h5>
+    </div>
+    <nav>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#" routerLink="approval">Approval List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" routerLink="reports">Reports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" routerLink="payroll">Payroll</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="logOut()">LogOut</a>
+            </li>
+        </ul>
+    </nav>
+
+
+</header>
